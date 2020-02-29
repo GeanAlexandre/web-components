@@ -7,14 +7,17 @@ class helloWorldComponent extends HTMLElement {
   }
 
   connectedCallback() {
+
+    var shadow = this.attachShadow({ mode: 'open' });
+
     var style = document.createElement('style');
     var paragrafo = document.createElement('p');
-    paragrafo.innerText = 'Gean Silva';
+    paragrafo.innerText = 'Hello World';
 
-    document.body.appendChild(paragrafo);
-    document.body.appendChild(style);
+    shadow.appendChild(paragrafo);
+    shadow.appendChild(style);
+    shadow.querySelector('style').textContent = `p {color:red}`
 
-    document.body.querySelector('style').textContent = `p {color:red}`
   }
 }
 
