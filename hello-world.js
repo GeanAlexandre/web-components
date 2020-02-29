@@ -1,7 +1,7 @@
 'use strict'
 
 
-class helloWorldComponent extends HTMLElement {
+class HelloWorldComponent extends HTMLElement {
   constructor() {
     super();
   }
@@ -9,16 +9,9 @@ class helloWorldComponent extends HTMLElement {
   connectedCallback() {
 
     var shadow = this.attachShadow({ mode: 'open' });
-
-    var style = document.createElement('style');
-    var paragrafo = document.createElement('p');
-    paragrafo.innerText = 'Hello World';
-
-    shadow.appendChild(paragrafo);
-    shadow.appendChild(style);
-    shadow.querySelector('style').textContent = `p {color:red}`
-
+    var helloWorldComponent = document.getElementById("hello-world");
+    shadow.appendChild(helloWorldComponent.content);
   }
 }
 
-customElements.define('hello-world', helloWorldComponent);
+customElements.define('hello-world', HelloWorldComponent);
