@@ -4,13 +4,23 @@
 class HelloWorldComponent extends HTMLElement {
   constructor() {
     super();
+    this.attachShadow({ mode: 'open' });
   }
 
-  connectedCallback() {
+  static get observedAttributes() { return ['color'] }
 
-    var shadow = this.attachShadow({ mode: 'open' });
+  connectedCallback() {
     var helloWorldComponent = document.getElementById("hello-world");
-    shadow.appendChild(helloWorldComponent.content);
+    this.shadowRoot.appendChild(helloWorldComponent.content);
+  }
+
+  attributeChangedCallback(attrName, oldVal, newVal) {
+    var style = document.createElement('style');
+    style.textContent = `
+      p {color: ${newVal}}
+    `
+
+    this.shadowRoot.appendChild(style);
   }
 }
 
